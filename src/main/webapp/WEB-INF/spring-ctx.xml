@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName" 
+    xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+    ">
+<mvc:interceptors>
+	<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
+</mvc:interceptors>
+<mvc:default-servlet-handler/>
+<mvc:view-controller path="/" view-name="hello"/>
+<mvc:resources mapping="/resources/**" location="classpath:/resources/" />
+<!-- <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<property name="basename" value="classpath:messages"/>
+</bean> -->
+   <context:component-scan base-package = "org.sb.examples" />
+   
+   <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name = "prefix" value = "" />
+      <property name = "suffix" value = "" />
+      <property name = "order" value = "1" />
+   </bean>
+   	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:org/sb/resources/MessageResources" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="fallbackToSystemLocale" value="false"/>
+	</bean>
+   <bean id="localeResolver"
+	class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	<property name="defaultLocale" value="en" />
+	</bean>
+   
+   <!-- 
+   	<interceptors>
+		<beans:bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="locale" />
+		</beans:bean>
+	</interceptors>
+   <bean id="localeResolver"
+	class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	<property name="defaultLocale" value="en" />
+</bean>
+   	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="en" />
+		<property name="cookieName" value="myAppLocaleCookie"/>
+		<property name="cookieMaxAge" value="3600"/>
+	</bean>
+    -->
+   
+   <bean id="viewResolver"
+    class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    <property name="prefix" value=""/>
+    <property name="suffix" value=""/>
+    <property name = "order" value = "5" />
+</bean>
+<!-- 
+<bean id="validatorFactory" class="org.springmodules.validation.commons.DefaultValidatorFactory">
+	<property name="validationConfigLocations">
+		<list>
+			<value>/WEB-INF/validation.xml</value>
+			<value>/WEB-INF/validator-rules.xml</value>
+		</list>	
+	</property>
+</bean>
+
+<bean id="beanValidator" class="org.strutsbridge.validation.CustomBeanValidator">
+	<property name="validatorFactory" ref="validatorFactory" />
+</bean>  
+ -->
+ <bean id="requestDataValueProcessor" class="org.springbridge.support.TokenRequestDataValueProcessor">
+</bean>
+</beans>

@@ -1,0 +1,132 @@
+package org.sb.examples.simple;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.springbridge.action.DynaValidatorForm;
+
+public class ValidatorForm extends DynaValidatorForm {
+	private static final long serialVersionUID = 1L;
+
+	String byteValue;
+	String creditCard;
+	String date;
+	String doubleValue;
+	String email;
+	String floatValue;
+	String integerValue;
+	String longValue;
+	String mask;
+	String min;
+	String max;
+	String range;
+	String required;
+	String shortValue;
+	String password;
+	String password2;
+	public String getByteValue() {
+		return byteValue;
+	}
+	public void setByteValue(String byteValue) {
+		this.byteValue = byteValue;
+	}
+	public String getCreditCard() {
+		return creditCard;
+	}
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getDoubleValue() {
+		return doubleValue;
+	}
+	public void setDoubleValue(String doubleValue) {
+		this.doubleValue = doubleValue;
+	}
+	
+	@NotEmpty
+	@javax.validation.constraints.NotBlank
+	@Size(min=12,max=15)
+	@Email(regexp=".+@.+\\.in")
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getFloatValue() {
+		return floatValue;
+	}
+	public void setFloatValue(String floatValue) {
+		this.floatValue = floatValue;
+	}
+	public String getIntegerValue() {
+		return integerValue;
+	}
+	public void setIntegerValue(String integerValue) {
+		this.integerValue = integerValue;
+	}
+	public String getLongValue() {
+		return longValue;
+	}
+	public void setLongValue(String longValue) {
+		this.longValue = longValue;
+	}
+	public String getMask() {
+		return mask;
+	}
+	public void setMask(String mask) {
+		this.mask = mask;
+	}
+	public String getMin() {
+		return min;
+	}
+	public void setMin(String min) {
+		this.min = min;
+	}
+	public String getMax() {
+		return max;
+	}
+	public void setMax(String max) {
+		this.max = max;
+	}
+	public String getRange() {
+		return range;
+	}
+	public void setRange(String range) {
+		this.range = range;
+	}
+	public String getRequired() {
+		return required;
+	}
+	public void setRequired(String required) {
+		this.required = required;
+	}
+	public String getShortValue() {
+		return shortValue;
+	}
+	public void setShortValue(String shortValue) {
+		this.shortValue = shortValue;
+	}
+	public String getPassword() {
+		return password;
+	}
+	@Pattern(regexp=".+@.+\\.[a-z]+")
+	@Size(min = 5, max = 20)
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPassword2() {
+		return password2;
+	}
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
+}
